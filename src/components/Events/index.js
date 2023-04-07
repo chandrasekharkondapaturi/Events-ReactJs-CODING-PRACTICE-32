@@ -74,32 +74,25 @@ class Events extends Component {
   setActiveEventId = id => {
     this.setState({activeEventId: id})
   }
-
-  renderEventsList = () => {
-    const {activeEventId} = this.state
-    return (
-      <ul className="events-list">
-        {eventsList.map(eachEvent => (
-          <EventItem
-            key={eachEvent.id}
-            eventDetails={eachEvent}
-            setActiveEventId={this.setActiveEventId}
-            isActive={eachEvent.id === activeEventId}
-          />
-        ))}
-      </ul>
-    )
-  }
-
+  
   render() {
+    const {activeEventId} = this.state
     return (
       <div className="events-container">
         <div className="events-content">
           <h1 className="heading">Events</h1>
-          {this.renderEventsList()}
+          <ul className="events-list">
+            {eventsList.map(eachEvent => (
+              <EventItem
+                key={eachEvent.id}
+                 eventDetails={eachEvent}
+                 setActiveEventId={this.setActiveEventId}
+                 isActive={eachEvent.id === activeEventId}
+              />
+            ))}
+          </ul>
         </div>
-        <ActiveEventRegistrationDetails
-          activeEventRegistrationStatus={this.getActiveEventRegistrationStatus()}
+        <ActiveEventRegistrationDetails activeEventRegistrationStatus={this.getActiveEventRegistrationStatus()}
         />
       </div>
     )
